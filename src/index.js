@@ -45,23 +45,32 @@ let sing = {
 }
 
 function decode(expr) {
+
    let result = [];
 
    for (let i = 0; i < expr.length; i += 10) {
+
       result.push(expr.slice(i, i + 10));
+
    };
 
    result = result.map((it) => {
+
       let pair = [];
 
       for (let i = 0; i < it.length; i += 2) {
+
          pair.push(it.slice(i, i + 2));
       }
       return pair;
    })
       .map(it => it
          .map(pair => sing[pair]))
+
       .map(it => it.join(''))
+
+      .map(it => it.replace('     ', ' '))
+
       .map(it => MORSE_TABLE[it]).join('')
 
    return result;
